@@ -6,6 +6,7 @@ describe('Lambda Eats', () => {
 
     const nameInput = () => cy.get('input[name="name"]')
     const specialInput = () => cy.get('input[name="specialInstructions"]')
+    const cheese = () => cy.get('checkbox[name="cheese"]')
     const submitBtn = () => cy.get('#submitBtn')
     
     it('test that you can add text to the name input box', () => {
@@ -20,6 +21,7 @@ describe('Lambda Eats', () => {
     it('test that you can submit the form', () => {
         submitBtn().should('exist')
         nameInput().type('Olivia')
+        cheese().check()
         specialInput().type('Gluten Free')
         submitBtn().click()
     })
