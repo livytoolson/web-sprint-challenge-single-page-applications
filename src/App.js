@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PizzaForm from './PizzaForm';
 import Home from './Home'
 import axios from 'axios';
@@ -28,14 +28,14 @@ const initialFormErrors = {
   specialInstructions: '',
 }
 const initialOrder = []
-// const initialDisabled = true
+const initialDisabled = true
 
 export default function App () {
   // SET SLICES OF STATE
   const [order, setOrder] = useState(initialOrder)
   const [formValues, setFormValues] = useState(initialFormValues)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
-  // const [disabled, setDisabled] = useState(initialDisabled)
+  const [disabled, setDisabled] = useState(initialDisabled)
 
   // // HELPER FUNCTIONS
   const postNewOrder = newOrder => {
@@ -93,11 +93,11 @@ export default function App () {
 
   // SIDE EFFECTS
   // adjust the status of disabled everytime the formValues changes
-  // useEffect(() => {
-  //   schema.isValid(formValues).then(valid => {
-  //     setDisabled(!valid);
-  //   })
-  // }, [formValues])
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => {
+      setDisabled(!valid);
+    })
+  }, [formValues])
 
   return (
     <div>
@@ -117,7 +117,7 @@ export default function App () {
         <PizzaForm 
         values={formValues}
         errors={formErrors}
-        // disabled={disabled}
+        disabled={disabled}
         submit={formSubmit}
         change={inputChange}
         />

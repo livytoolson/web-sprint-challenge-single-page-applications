@@ -7,7 +7,7 @@ export default yup.object().shape({
         .min(2, 'Name must be at least 2 characters'),
     pizzaSize: yup
         .string()
-        .oneOf(['Small', 'Medium', 'Large', 'Extra Large']),
+        .oneOf(['s', 'm', 'l', 'xl']),
     cheese: yup
         .boolean(),
     pepperoni: yup
