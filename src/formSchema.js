@@ -17,5 +17,5 @@ export default yup.object().shape({
     sausage: yup
         .boolean(),
     specialInstructions: yup
-        .string(),
+        .string()
 });
