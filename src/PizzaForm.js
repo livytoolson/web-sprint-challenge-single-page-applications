@@ -1,5 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components'
+
+// COMPONENT STYLING 
+const StyledTitle = styled.h1`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+const StyledDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+const HomeButton = styled.button`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
 export default function PizzaForm(props) {
     const { values, submit, change, disabled, errors } = props;
@@ -17,13 +35,13 @@ export default function PizzaForm(props) {
 
     return (
         <form onSubmit={onSubmit}>
-            <h1>Pizza Order Form</h1>
+            <StyledTitle>Pizza Order Form</StyledTitle>
             {/* RENDER VALIDATION ERRORS */}
             <div>
                 <div className="errors">{errors.name}</div>
             </div>
 
-            <div>
+            <StyledDiv>
                 {/* NAME TEXT INPUT */}
                 <label>Name
                     <input 
@@ -91,11 +109,11 @@ export default function PizzaForm(props) {
 
                 {/* ORDER BUTTON */}
                 <button id='submitBtn' disabled={disabled}>Submit Order</button>
-            </div>
+            </StyledDiv>
 
             <div>
                 <Link to="/">
-                    <button>Home</button>
+                    <HomeButton>Home</HomeButton>
                 </Link>
             </div>
         </form>
