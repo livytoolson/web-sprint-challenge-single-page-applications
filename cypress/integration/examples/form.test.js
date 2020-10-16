@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('Lambda Eats', () => {
 
     beforeEach(() => {
@@ -8,6 +9,7 @@ describe('Lambda Eats', () => {
     const specialInput = () => cy.get('input[name="specialInstructions"]')
     const checkboxes = () => cy.get('[type="checkbox"]').check()
     const submitBtn = () => cy.get('#submitBtn')
+    const selectSmall = () => cy.get('select')
     
     it('test that you can add text to the name input box', () => {
         nameInput().type('Olivia')
@@ -21,6 +23,7 @@ describe('Lambda Eats', () => {
     it('test that you can submit the form', () => {
         submitBtn().should('exist')
         nameInput().type('Olivia')
+        selectSmall().select('s')
         checkboxes().check()
         specialInput().type('Gluten Free')
         submitBtn().click()
