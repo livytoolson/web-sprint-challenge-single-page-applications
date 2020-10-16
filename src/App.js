@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PizzaForm from './PizzaForm';
-import Home from './Home'
+import Home from './Home';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
 import schema from './formSchema';
 import * as yup from 'yup';
 
 // INITIAL STATE OF THE FORM
-const initialFormValues = {
+const initialFormValues = {  // STEP 1
   // TEXT INPUT
   name: '',
   specialInstructions: '',
@@ -33,16 +33,16 @@ const initialDisabled = true
 export default function App () {
   // SET SLICES OF STATE
   const [order, setOrder] = useState(initialOrder)
-  const [formValues, setFormValues] = useState(initialFormValues)
+  const [formValues, setFormValues] = useState(initialFormValues)  // STEP 2
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
 
   // // HELPER FUNCTIONS
-  const postNewOrder = newOrder => {
+  const postNewOrder = newOrder => { // STEP 16
     axios
       .post('https://reqres.in/api/users', newOrder)
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data) // STEP 17
         setOrder([...order, res.data]);
         setFormValues(initialFormValues);
       })
@@ -52,9 +52,9 @@ export default function App () {
   }
 
   // EVENT HANDLERS
-  const inputChange = (name, value) => {
+  const inputChange = (name, value) => { // STEP 7
     // console.log(name, value)
-    yup
+    yup // STEP 8
       .reach(schema, name)
       .validate(value)
       .then(() => {
@@ -70,14 +70,14 @@ export default function App () {
         });
       });
   
-    setFormValues({
+    setFormValues({ // STEP 9
       ...formValues,
       [name]: value 
     });
   }
 
-   const formSubmit = () => {
-    const newOrder = {
+   const formSubmit = () => { // STEP 14
+    const newOrder = { // STEP 14.5
       name: formValues.name.trim(),
       speacialInstructions: formValues.specialInstructions.trim(),
       pizzaSize: formValues.pizzaSize,
@@ -88,7 +88,7 @@ export default function App () {
     }
 
     // post newOrder using postNewOrder helper function
-    postNewOrder(newOrder);
+    postNewOrder(newOrder); // STEP 15
   }
 
   // SIDE EFFECTS
@@ -101,21 +101,13 @@ export default function App () {
 
   return (
     <div>
-      {/* <header>
-        <h1>Lambda Eats</h1>
-      </header> */}
-
-       {/* <Link to="/pizzaform">
-        <button>Pizza Order Form</button>
-      </Link> */}
-
       <Route exact path='/'>
           <Home />
-        </Route>
+      </Route>
 
       <Route path="/pizzaform">
         <PizzaForm 
-        values={formValues}
+        values={formValues} // STEP 3 // STEP 10
         errors={formErrors}
         disabled={disabled}
         submit={formSubmit}

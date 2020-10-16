@@ -20,21 +20,21 @@ const HomeButton = styled.button`
 `
 
 export default function PizzaForm(props) {
-    const { values, submit, change, disabled, errors } = props;
+    const { values, submit, change, disabled, errors } = props; // STEP 4
 
-    const onSubmit = (evt) => {
+    const onSubmit = (evt) => { // STEP 12
         evt.preventDefault();
-        submit();
+        submit(); // STPE 13
     };
 
-    const onChange = (evt) => {
+    const onChange = (evt) => { // STEP 6
         const { name, value, type, checked } = evt.target;
         const valueToUse = type === "checkbox" ? checked : value;
-        change(name, valueToUse);
+        change(name, valueToUse); // STEP 6.5
     };
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}> {/* STEP 11 */}
             <StyledTitle>Pizza Order Form</StyledTitle>
             {/* RENDER VALIDATION ERRORS */}
             <div>
@@ -45,8 +45,8 @@ export default function PizzaForm(props) {
                 {/* NAME TEXT INPUT */}
                 <label>Name
                     <input 
-                    value={values.name}
-                    onChange={onChange}
+                    value={values.name} // STEP 5
+                    onChange={onChange} // STEP 5.5 USER TYPES INTO FORM
                     name="name"
                     type="text"
                     />
