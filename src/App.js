@@ -10,7 +10,7 @@ import * as yup from 'yup';
 const initialFormValues = {
   // TEXT INPUT
   name: '',
-  speacialInstructions: '',
+  specialInstructions: '',
   // DROPDOWN
   pizzaSize: '',
   // CHECKBOXES
@@ -25,7 +25,7 @@ const initialFormErrors = {
   pepperoni: false,
   ham: false,
   sausage: false,
-  speacialInstructions: '',
+  specialInstructions: '',
 }
 const initialOrder = []
 // const initialDisabled = true
@@ -79,7 +79,7 @@ export default function App () {
    const formSubmit = () => {
     const newOrder = {
       name: formValues.name.trim(),
-      speacialInstructions: formValues.speacialInstructions.trim(),
+      speacialInstructions: formValues.specialInstructions.trim(),
       pizzaSize: formValues.pizzaSize,
       cheese: formValues.cheese,
       pepperoni: formValues.pepperoni,
