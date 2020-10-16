@@ -16,6 +16,7 @@ export default function PizzaForm(props) {
 
     return (
         <form onSubmit={onSubmit}>
+            <h1>Pizza Order Form</h1>
             {/* RENDER VALIDATION ERRORS */}
             <div>
                 <div className="errors">{errors.name}</div>

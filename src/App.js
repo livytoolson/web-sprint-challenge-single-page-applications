@@ -101,17 +101,17 @@ export default function App () {
 
   return (
     <div>
-      <header>
+      {/* <header>
         <h1>Lambda Eats</h1>
-      </header>
+      </header> */}
+
+       {/* <Link to="/pizzaform">
+        <button>Pizza Order Form</button>
+      </Link> */}
 
       <Route exact path='/'>
           <Home />
         </Route>
-      
-      <Link to="/pizzaform">
-        <button>Pizza Order Form</button>
-      </Link>
 
       <Route path="/pizzaform">
         <PizzaForm 
