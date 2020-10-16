@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PizzaForm from './PizzaForm';
 import Home from './Home'
 import axios from 'axios';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import schema from './formSchema';
 import * as yup from 'yup';
 

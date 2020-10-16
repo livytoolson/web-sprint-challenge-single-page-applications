@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function PizzaForm(props) {
     const { values, submit, change, disabled, errors } = props;
@@ -90,6 +91,12 @@ export default function PizzaForm(props) {
 
                 {/* ORDER BUTTON */}
                 <button id='submitBtn' disabled={disabled}>Submit Order</button>
+            </div>
+
+            <div>
+                <Link to="/">
+                    <button>Home</button>
+                </Link>
             </div>
         </form>
     )
