@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PizzaForm from './PizzaForm';
-import schema from './formSchema';
 import axios from 'axios';
-import * as yup from 'yup';
 import { Route, Link } from 'react-router-dom';
+import schema from './formSchema'
+import * as yup from 'yup'
 
 // INITIAL STATE OF THE FORM
 const initialFormValues = {
@@ -20,19 +20,18 @@ const initialFormValues = {
 }
 const initialFormErrors = {
   name: '',
-  speacialInstructions: '',
-  pizzaSize: '',
   cheese: false,
   pepperoni: false,
   ham: false,
   sausage: false,
+  speacialInstructions: '',
 }
-const initialCustomer = []
+const initialOrder = []
 const initialDisabled = true
 
-const App = () => {
+export default function App () {
   // SET SLICES OF STATE
-  const [order, setOrder] = useState(initialCustomer)
+  const [order, setOrder] = useState(initialOrder)
   const [formValues, setFormValues] = useState(initialFormValues)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
@@ -50,30 +49,30 @@ const App = () => {
       });
   }
 
-  // // EVENT HANDLERS
-  // const inputChange = (name, value) => {
-  //   // console.log(name, value)
-  //   yup
-  //     .reach(schema, name)
-  //     .validate(value)
-  //     .then(() => {
-  //       setFormErrors({
-  //         ...formErrors,
-  //         [name]: "",
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       setFormErrors({
-  //         ...formErrors,
-  //         [name]: err.errors[0],
-  //       });
-  //     });
+  // EVENT HANDLERS
+  const inputChange = (name, value) => {
+    // console.log(name, value)
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        });
+      })
+      .catch((err) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0],
+        });
+      });
   
-  //   setFormValues({
-  //     ...formValues,
-  //     [name]: value 
-  //   });
-  // }
+    setFormValues({
+      ...formValues,
+      [name]: value 
+    });
+  }
 
    const formSubmit = () => {
     const newOrder = {
@@ -85,16 +84,18 @@ const App = () => {
       ham: formValues.ham,
       sausage: formValues.sausage,
     }
+
+    // post newOrder using postNewOrder helper function
+    postNewOrder(newOrder);
   }
 
-  // postNewOrder(newOrder);
-
   // SIDE EFFECTS
-  // useEffect(() => {
-  //   schema.isValid(formValues).then(valid => {
-  //     setDisabled(!valid);
-  //   })
-  // }, [formValues])
+  // adjust the status of disabled everytime the formValues changes
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => {
+      setDisabled(!valid);
+    })
+  }, [formValues])
 
   return (
     <div>
@@ -102,19 +103,28 @@ const App = () => {
         <h1>Lambda Eats</h1>
       </header>
       
-      <Link to="/pizzaform">
+      {/* <Link to="/pizzaform">
         <button>Pizza Order Form</button>
-      </Link>
+      </Link> */}
 
-      <div>
+      {/*
         <Route path="/pizzaform" component={PizzaForm}
           values={formValues}
           errors={formErrors}
           disabled={disabled}
           submit={formSubmit}
-        />
-      </div>
+          change={inputChange}
+        /> */}
+
+        <Route path="/pizzaform">
+          <PizzaForm 
+          values={formValues}
+          errors={formErrors}
+          disabled={disabled}
+          submit={formSubmit}
+          change={inputChange}
+          />
+        </Route>
     </div>
-  );
-};
-export default App;
+  )
+}
